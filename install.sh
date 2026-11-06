@@ -5,7 +5,7 @@
 # Existing files with the same names are replaced; nothing else is touched.
 set -euo pipefail
 here="$(cd "$(dirname "$0")" && pwd)"
-if [ $# -eq 0 ]; then dest="$HOME/.claude"; else dest="$(cd "$1" && pwd)/.claude"; fi
+if [ $# -eq 0 ]; then dest="$HOME/.claude"; else mkdir -p "$1"; dest="$(cd "$1" && pwd)/.claude"; fi
 mkdir -p "$dest/skills" "$dest/commands"
 rm -rf "$dest/skills/tal-builder"
 cp -R "$here/.claude/skills/tal-builder" "$dest/skills/tal-builder"
