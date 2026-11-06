@@ -1,0 +1,23 @@
+{
+ "filters": {
+  "company_location_search": {
+   "include": [
+    "United States"
+   ]
+  },
+  "company_headcount_custom": {
+   "min": 11,
+   "max": 200
+  },
+  "company_industry": {
+   "include": [
+    "Accounting"
+   ]
+  }
+ },
+ "rubric_handles": [
+  "gleim.com",
+  "accountfully.com"
+ ],
+ "why": "Every seed is a US firm labelled Accounting with 41 to 149 staff. The size cap removes the Big Four, the national networks and the funded bookkeeping startups; the industry removes payroll and software vendors. Two anti-seeds (an exam-prep publisher and a staffing company) are labelled Accounting at the right size, so no filter can remove them: the rubric and the read must."
+}

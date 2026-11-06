@@ -1,0 +1,8 @@
+.env
+__pycache__/
+*.pyc
+.DS_Store
+# A workspace made by /tal-init inside this repo holds your own seeds and data.
+tal/
+# Local live tests
+.live-test/

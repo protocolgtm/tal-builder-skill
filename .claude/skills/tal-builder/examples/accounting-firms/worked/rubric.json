@@ -1,0 +1,22 @@
+{
+  "exclude": [
+    {"reason": "not a CPA firm: staffing, exam prep or software", "when": {"path": "description_ai", "op": "regex", "value": "staffing company|exam prep|test prep|software (company|platform|provider)"}},
+    {"reason": "owned by or merged into a larger firm or platform", "when": {"any": [
+      {"path": "name", "op": "regex", "value": "\\b(a|an) [\\w& ]+ (company|firm|member)\\b|\\bnow [A-Z]|\\bpart of\\b"},
+      {"path": "description_ai", "op": "regex", "value": "has joined|\\bjoined (national|the) |merged (with|into)|acquired by|now part of|now operating under"}
+    ]}}
+  ],
+  "signals": [
+    {"label": "lookalike of a seed", "points": 20, "when": {"path": "sources", "op": "contains_any", "value": ["lookalike"]}},
+    {"label": "describes itself as a CPA firm", "points": 20, "when": {"path": "description_ai", "op": "regex", "value": "\\bcpas?\\b|certified public account"}},
+    {"label": "does both tax and audit or assurance", "points": 10, "when": {"all": [
+      {"path": "description_ai", "op": "regex", "value": "\\btax"},
+      {"path": "description_ai", "op": "regex", "value": "audit|assurance"}
+    ]}},
+    {"label": "30 to 150 employees", "points": 10, "when": {"path": "employee_count", "op": "between", "value": [30, 150]}},
+    {"label": "founded 2005 or earlier", "points": 5, "when": {"path": "founded", "op": "lte", "value": 2005}},
+    {"label": "hiring accountants", "points": 15, "when": {"path": "job_postings.active_titles", "op": "contains_any", "value": ["tax", "audit", "accountant", "assurance", "advisory"]}},
+    {"label": "publishes pricing (product companies do, firms rarely)", "points": -10, "when": {"path": "attributes.has_pricing", "op": "eq", "value": true}},
+    {"label": "raised venture money in the last 5 years", "points": -20, "when": {"path": "funding.latest_funding_date", "op": "within_years", "value": 5}}
+  ]
+}
